@@ -1,0 +1,31 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../redux.html">
+
+<dom-module id="pm-home">
+    <template>
+        <h1>[[title]]</h1>
+    </template>
+    <script>
+        (function PetMeHomeDefinition(customElements) {
+            'use strict';
+
+            class PetMeHome extends ReduxMixin(Polymer.Element) {
+                static get is() {
+                    return 'pm-home';
+                }
+
+                static get properties() {
+                    return {
+                        title: {
+                            type: String,
+                            value: 'Something',
+                            statePath: 'title'
+                        }
+                    };
+                }
+            }
+
+            customElements.define(PetMeHome.is, PetMeHome);
+        })(window.customElements);
+    </script>
+</dom-module>

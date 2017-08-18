@@ -1,32 +1,38 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../redux.html">
+<link rel="import" href="../views/home.view.html">
 
 <dom-module id="pm-app">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <h2>Hello [[prop1]]!</h2>
-  </template>
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+        </style>
+        <h2>Hello [[prop1]]!</h2>
+        <pm-home></pm-home>
+    </template>
 
-  <script>
-    /**
-     * @customElement
-     * @polymer
-     */
-    class PmApp extends Polymer.Element {
-      static get is() { return 'pm-app'; }
-      static get properties() {
-        return {
-          prop1: {
-            type: String,
-            value: 'pm-app'
-          }
-        };
-      }
-    }
+    <script>
+        /**
+         * @customElement
+         * @polymer
+         */
+        class PmApp extends ReduxMixin(Polymer.Element) {
+            static get is() {
+                return 'pm-app';
+            }
 
-    window.customElements.define(PmApp.is, PmApp);
-  </script>
+            static get properties() {
+                return {
+                    prop1: {
+                        type: String,
+                        value: 'pm-app'
+                    }
+                };
+            }
+        }
+
+        window.customElements.define(PmApp.is, PmApp);
+    </script>
 </dom-module>

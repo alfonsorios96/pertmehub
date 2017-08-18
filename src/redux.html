@@ -1,0 +1,49 @@
+<script src="../node_modules/redux/dist/redux.js"></script>
+<script src="../node_modules/redux-thunk/dist/redux-thunk.js"></script>
+<link rel="import" href="../bower_components/polymer-redux/polymer-redux.html">
+
+<!-- REDUCERS -->
+<!--
+<link rel="import" href="reducers/auth.reducer.html">
+<link rel="import" href="reducers/home.reducer.html">
+<link rel="import" href="reducers/posts.reducer.html">
+-->
+
+<!-- DB -->
+<!--
+<link rel="import" href="db/auth.db.html">
+<link rel="import" href="db/posts.db.html">
+-->
+
+<script>
+    // INIT FIREBASE
+    let config = {
+        apiKey: "AIzaSyAO-Dmhe9hYrTcOy1wdGC0xZRtTjophHG0",
+        authDomain: "pet-me-e6ae6.firebaseapp.com",
+        databaseURL: "https://pet-me-e6ae6.firebaseio.com",
+        storageBucket: "pet-me-e6ae6.appspot.com",
+    };
+    firebase.initializeApp(config);
+    const auth = firebase.auth();
+    const db = firebase.database();
+
+    const initialApp = {
+        title: 'PET-ME HUB'
+    };
+    const homeReducer = (state = initialApp, action) => {
+        switch (action.type) {
+            case 'SET_USER':
+                state = Object.assign({}, state, {user: action.payload});
+                break;
+            case 'SET_PAGE':
+                action.meta.importHref(action.meta.resolveUrl('../views/' + action.payload + '.view.html'), null, null, true);
+                state = Object.assign({}, state, {page: action.payload});
+                break;
+            default:
+        }
+        return state;
+    }
+
+    const store = Redux.createStore(homeReducer);
+    const ReduxMixin = PolymerRedux(store);
+</script>

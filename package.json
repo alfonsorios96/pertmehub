@@ -4,12 +4,19 @@
     "description": "Plataforma para adoptar",
     "main": "index.js",
     "scripts": {
-        "test": "test"
+        "test": "test",
+        "pre-ready": "npm install && bower install && polymer build && gulp service-worker-build",
+        "dev": "npm run pre-ready && firebase serve",
+        "prod": "npm run pre-ready && firebase deploy"
     },
-    "author": "Alfonso Rios",
+    "author": "German Martinez & Alfonso Rios",
     "license": "ISC",
     "devDependencies": {
         "gulp": "3.9.1",
         "sw-precache": "5.2.0"
+    },
+    "dependencies": {
+        "redux": "^3.7.2",
+        "redux-thunk": "^2.2.0"
     }
 }

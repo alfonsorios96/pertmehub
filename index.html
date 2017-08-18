@@ -13,143 +13,162 @@
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/main.css">
     <script src="/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script>
+        'use strict';
+        (function registerInDOM(document) {
+            if ('registerElement' in document
+                && 'import' in document.createElement('link')
+                && 'content' in document.createElement('template')) {
+            } else {
+                const e = document.createElement('script');
+                e.src = '/bower_components/webcomponentsjs/webcomponents-loader.js';
+                document.head.appendChild(e);
+            }
+        })(window.document);
 
-    <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
-
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js');
+            });
+        }
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
     <link rel="import" href="/src/pm-app/pm-app.html">
 </head>
 <body>
-<style>
+<pm-app>
+    <style>
 
-    :host {
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        height: 100vh;
-        flex-wrap: wrap;
-    }
+        :host {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            height: 100vh;
+            flex-wrap: wrap;
+        }
 
-    .authenticationButton {
+        .authenticationButton {
 
-        @apply --layout-inline;
-        @apply --layout-center-center;
-        position: relative;
-        box-sizing: border-box;
-        min-width: 5.14em;
-        background: transparent;
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        -webkit-tap-highlight-color: transparent;
-        font: inherit;
-        text-transform: uppercase;
-        outline-width: 0;
-        border-radius: 3px;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        -webkit-user-select: none;
-        user-select: none;
-        cursor: pointer;
-        z-index: 0;
-        padding: 0.7em 0.57em;
+            @apply --layout-inline;
+            @apply --layout-center-center;
+            position: relative;
+            box-sizing: border-box;
+            min-width: 5.14em;
+            background: transparent;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-tap-highlight-color: transparent;
+            font: inherit;
+            text-transform: uppercase;
+            outline-width: 0;
+            border-radius: 3px;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+            cursor: pointer;
+            z-index: 0;
+            padding: 0.7em 0.57em;
 
-        background: #00AA8D;
-        color: #FFF;
-        font-weight: bold;
+            background: #00AA8D;
+            color: #FFF;
+            font-weight: bold;
 
-        text-align: center;
-    }
+            text-align: center;
+        }
 
-    .imgButton {
-        width: 190px;
-        height: 180px;
-        border-radius: 50%;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 127px;
-    }
+        .imgButton {
+            width: 190px;
+            height: 180px;
+            border-radius: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 127px;
+        }
 
-    .loginTitle {
-        flex: 0 0 100%;
-        align-self: center;
-        text-align: center;
-        font-size: 2rem;
-        color: #424242;
-    }
+        .loginTitle {
+            flex: 0 0 100%;
+            align-self: center;
+            text-align: center;
+            font-size: 2rem;
+            color: #424242;
+        }
 
-    .loginText {
-        flex: 0 0 90%;
-        align-self: center;
-        text-align: center;
-        color: #424242;
-        text-align: center;
-        font-size: 1.6rem;
-    }
-
-    .phrase {
-
-        flex: 0 0 100%;
-        align-self: center;
-        text-align: center;
-        color: #424242;
-        font-size: 1.5rem;
-        font-style: italic;
-        margin: 20px 0;
-    }
-
-    .content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    @media only screen and (min-width: 312px) {
-        .phrase {
-            font-size: 1.1rem;
+        .loginText {
             flex: 0 0 90%;
+            align-self: center;
+            text-align: center;
+            color: #424242;
+            text-align: center;
+            font-size: 1.6rem;
         }
 
-        .loginText {
-            font-size: 1.4rem;
-            flex: 0 0 96%;
-
-        }
-    }
-
-    @media only screen and (min-width: 480px) {
         .phrase {
-            font-size: 1.2rem;
-            flex: 0 0 80%;
 
+            flex: 0 0 100%;
+            align-self: center;
+            text-align: center;
+            color: #424242;
+            font-size: 1.5rem;
+            font-style: italic;
+            margin: 20px 0;
         }
 
-        .loginText {
-            font-size: 1.4rem;
-            flex: 0 0 98%;
-
-        }
-    }
-
-    @media only screen and (max-width: 768px) {
-        .phrase {
-            font-size: 1.2rem;
-            flex: 0 0 80%;
-
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
-        .loginText {
-            font-size: 1.4rem;
+        @media only screen and (min-width: 312px) {
+            .phrase {
+                font-size: 1.1rem;
+                flex: 0 0 90%;
+            }
+
+            .loginText {
+                font-size: 1.4rem;
+                flex: 0 0 96%;
+
+            }
         }
-    }
-</style>
-<div class="content">
-    <img class="imgButton" src="/img/graylogo.png" alt="signin button">
 
-    <p class="loginText">
-        <strong>Petme</strong> un lugar donde encontrar más que una mascota
+        @media only screen and (min-width: 480px) {
+            .phrase {
+                font-size: 1.2rem;
+                flex: 0 0 80%;
 
-    </p>
-    <strong class="phrase">No compres, mejor adopta...</strong>
-    <button class="authenticationButton" disabled>Próximamente</button>
-</div>
+            }
+
+            .loginText {
+                font-size: 1.4rem;
+                flex: 0 0 98%;
+
+            }
+        }
+
+        @media only screen and (max-width: 768px) {
+            .phrase {
+                font-size: 1.2rem;
+                flex: 0 0 80%;
+
+            }
+
+            .loginText {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+    <div class="content">
+        <img class="imgButton" src="/img/graylogo.png" alt="signin button">
+
+        <p class="loginText">
+            <strong>Petme</strong> un lugar donde encontrar más que una mascota
+
+        </p>
+        <strong class="phrase">No compres, mejor adopta...</strong>
+        <button class="authenticationButton" disabled>Próximamente</button>
+    </div>
+</pm-app>
 </body>
 </html>

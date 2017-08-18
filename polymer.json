@@ -1,11 +1,23 @@
 {
+    "entrypoint": "index.html",
+    "shell": "src/pm-app/pm-app.html",
+    "fragments": [
+    ],
     "lint": {
         "rules": [
             "polymer-2"
         ]
     },
     "sources": [
-        "img/*"
+        "src/**/*",
+        "node_modules/redux/dist/redux.js",
+        "node_modules/redux-thunk/dist/redux-thunk.js",
+        "bower_components/polymer-redux/polymer-redux.html",
+        "bower_components/polymer-redux/dist/polymer-redux.html",
+        "img/*",
+        "css/*",
+        "js/vendor/*",
+        "favicon.ico"
     ],
     "builds": [
         {
