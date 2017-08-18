@@ -1,0 +1,15 @@
+{
+    "name": "petmehub",
+    "version": "1.0.0",
+    "description": "Plataforma para adoptar",
+    "main": "index.js",
+    "scripts": {
+        "test": "test"
+    },
+    "author": "Alfonso Rios",
+    "license": "ISC",
+    "devDependencies": {
+        "gulp": "3.9.1",
+        "sw-precache": "5.2.0"
+    }
+}
