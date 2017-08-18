@@ -1,0 +1,7 @@
+{
+  "name": "petmehub",
+  "short_name": "petmehub",
+  "description": "Plataforma para adoptar",
+  "start_url": "/",
+  "display": "standalone"
+}

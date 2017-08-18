@@ -1,0 +1,24 @@
+{
+    "lint": {
+        "rules": [
+            "polymer-2"
+        ]
+    },
+    "sources": [
+        "img/*"
+    ],
+    "builds": [
+        {
+            "bundle": true,
+            "js": {
+                "minify": true
+            },
+            "css": {
+                "minify": true
+            },
+            "html": {
+                "minify": true
+            }
+        }
+    ]
+}
